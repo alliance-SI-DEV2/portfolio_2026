@@ -1,0 +1,476 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+
+// Trips data
+const trips = [
+    {
+        id: 1,
+        name: "Perú",
+        type: "international",
+        country: "Perú",
+        flag: "🇵🇪",
+        images: [
+            "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&h=300&fit=crop"
+        ]
+    },
+    {
+        id: 2,
+        name: "Brasil",
+        type: "international", 
+        country: "Brasil",
+        flag: "🇧🇷",
+        images: [
+            "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=400&h=300&fit=crop"
+        ]
+    },
+    {
+        id: 3,
+        name: "Curaçao",
+        type: "international",
+        country: "Curaçao",
+        flag: "🇨🇼",
+        images: [
+            "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+        ]
+    },
+    {
+        id: 4,
+        name: "México",
+        type: "international",
+        country: "México",
+        flag: "🇲🇽",
+        images: [
+            "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1571847852852-c5b05d23ffa8?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1586089761745-5a6a3b37b83b?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1565969830336-c242423e57c0?w=400&h=300&fit=crop"
+        ]
+    },
+    {
+        id: 5,
+        name: "Antioquia",
+        type: "national",
+        country: "Colombia",
+        flag: "🇨🇴",
+        images: [
+        ]
+    },
+    {
+        id: 6,
+        name: "Santander",
+        type: "national",
+        country: "Colombia",
+        flag: "🇨🇴",
+        images: [
+            "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=400&h=300&fit=crop",
+            "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop"
+        ]
+    }
+];
+---
+
+<Layout title="My Trips - Jhon Henao">
+    <main class='px-4'>
+        <SectionContainer>
+            <div class="flex flex-col gap-8">
+                <div class="text-center">
+                    <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        My Travel Adventures
+                    </h1>
+                    <p class="text-lg text-white/80">
+                        Exploring the world, one destination at a time
+                    </p>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex justify-center gap-4 mb-8">
+                    <button 
+                        class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 active bg-yellow-200/20 border-yellow-200/50 text-yellow-200"
+                        data-filter="all"
+                    >
+                        All Trips ({trips.length})
+                    </button>
+                    <button 
+                        class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 border-white/30 text-white/70 hover:border-yellow-200/50 hover:text-yellow-200"
+                        data-filter="international"
+                    >
+                        International ({trips.filter(trip => trip.type === 'international').length})
+                    </button>
+                    <button 
+                        class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 border-white/30 text-white/70 hover:border-yellow-200/50 hover:text-yellow-200"
+                        data-filter="national"
+                    >
+                        National ({trips.filter(trip => trip.type === 'national').length})
+                    </button>
+                </div>
+
+                <!-- Trips Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="trips-grid">
+                    {trips.map((trip) => (
+                        <div 
+                            class="trip-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+                            data-type={trip.type}
+                        >
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-3xl">{trip.flag}</span>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">{trip.name}</h3>
+                                    <span class="text-sm text-yellow-200/80 capitalize">{trip.type} Trip</span>
+                                </div>
+                            </div>
+
+                            <!-- Gallery -->
+                            <div class="gallery-container mb-4">
+                                <div class="grid grid-cols-2 gap-2">
+                                    {trip.images.map((image, index) => (
+                                        <div 
+                                            class="gallery-item relative overflow-hidden rounded-lg aspect-square cursor-pointer group"
+                                            data-trip-id={trip.id}
+                                            data-image-index={index}
+                                        >
+                                            <img 
+                                                src={image} 
+                                                alt={`${trip.name} - Image ${index + 1}`}
+                                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                                loading="lazy"
+                                            />
+                                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                                                <svg class="size-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <!-- Image expanded modal -->
+                <div id="imageModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+                    <div class="relative max-w-4xl max-h-[90vh] w-full">
+                        <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-yellow-200 transition-colors">
+                            <svg class="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                        <img id="modalImage" class="w-full h-full object-contain rounded-lg" src="" alt="" />
+                        <div class="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2">
+                            <p id="modalCaption" class="text-white font-semibold"></p>
+                        </div>
+
+                        <!-- Image navigation -->
+                        <button id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
+                            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
+                            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Button to go back to home -->
+                <div class="text-center mt-8">
+                    <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-200/10 hover:bg-yellow-200/20 border border-yellow-200/30 rounded-full text-yellow-200 transition-colors">
+                        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Back to Portfolio
+                    </a>
+                </div>
+            </div>
+        </SectionContainer>
+    </main>
+
+    <script>
+        // Datos de los viajes para el script (replicamos los datos)
+        const tripsData = [
+            {
+                id: 1,
+                name: "Perú",
+                images: [
+                    "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1580652688551-d5db14765b71?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1580748187633-64b74d697049?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1524013820042-74f98b83a9a6?w=800&h=600&fit=crop"
+                ]
+            },
+            {
+                id: 2,
+                name: "Brasil",
+                images: [
+                    "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=800&h=600&fit=crop"
+                ]
+            },
+            {
+                id: 3,
+                name: "Curaçao",
+                images: [
+                    "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1585737166440-fe4cb2f8b76b?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&h=600&fit=crop"
+                ]
+            },
+            {
+                id: 4,
+                name: "México",
+                images: [
+                    "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1571847852852-c5b05d23ffa8?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1586089761745-5a6a3b37b83b?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1565969830336-c242423e57c0?w=800&h=600&fit=crop"
+                ]
+            },
+            {
+                id: 5,
+                name: "Antioquia",
+                images: [
+                    "https://images.unsplash.com/photo-1565689542502-46771c9e3b11?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1608834598654-7b20fd2cbeda?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop"
+                ]
+            },
+            {
+                id: 6,
+                name: "Santander",
+                images: [
+                    "https://images.unsplash.com/photo-1544636331-8ad4e6d4e08c?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=800&h=600&fit=crop",
+                    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop"
+                ]
+            }
+        ];
+
+        // Variables para el modal
+        let currentTripId = null;
+        let currentImageIndex = 0;
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeModalBtn = document.getElementById('closeModal');
+        const prevBtn = document.getElementById('prevImage');
+        const nextBtn = document.getElementById('nextImage');
+
+        // Funcionalidad de filtros
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const tripCards = document.querySelectorAll('.trip-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                // Actualizar estilos de botones
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-yellow-200/20', 'border-yellow-200/50', 'text-yellow-200');
+                    btn.classList.add('border-white/30', 'text-white/70');
+                });
+                
+                button.classList.add('active', 'bg-yellow-200/20', 'border-yellow-200/50', 'text-yellow-200');
+                button.classList.remove('border-white/30', 'text-white/70');
+                
+                // Filtrar tarjetas
+                tripCards.forEach(card => {
+                    const cardType = card.getAttribute('data-type');
+                    const htmlCard = card as HTMLElement;
+                    
+                    if (filter === 'all' || filter === cardType) {
+                        htmlCard.style.display = 'block';
+                        htmlCard.style.opacity = '1';
+                        htmlCard.style.transform = 'scale(1)';
+                    } else {
+                        htmlCard.style.opacity = '0';
+                        htmlCard.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            if (htmlCard.style.opacity === '0') {
+                                htmlCard.style.display = 'none';
+                            }
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Funcionalidad de la galería
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const tripId = parseInt(item.getAttribute('data-trip-id'));
+                const imageIndex = parseInt(item.getAttribute('data-image-index'));
+                
+                openModal(tripId, imageIndex);
+            });
+        });
+
+        function openModal(tripId, imageIndex) {
+            currentTripId = tripId;
+            currentImageIndex = imageIndex;
+            
+            const trip = tripsData.find(t => t.id === tripId);
+            if (trip) {
+                updateModalImage();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateModalImage() {
+            const trip = tripsData.find(t => t.id === currentTripId);
+            if (trip && trip.images[currentImageIndex]) {
+                modalImage.src = trip.images[currentImageIndex];
+                modalImage.alt = `${trip.name} - Image ${currentImageIndex + 1}`;
+                modalCaption.textContent = `${trip.name} - ${currentImageIndex + 1} of ${trip.images.length}`;
+            }
+        }
+
+        function nextImage() {
+            const trip = tripsData.find(t => t.id === currentTripId);
+            if (trip) {
+                currentImageIndex = (currentImageIndex + 1) % trip.images.length;
+                updateModalImage();
+            }
+        }
+
+        function prevImage() {
+            const trip = tripsData.find(t => t.id === currentTripId);
+            if (trip) {
+                currentImageIndex = currentImageIndex === 0 ? trip.images.length - 1 : currentImageIndex - 1;
+                updateModalImage();
+            }
+        }
+
+        // Event listeners para el modal
+        closeModalBtn.addEventListener('click', closeModal);
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            } else if (e.key === 'ArrowRight' && !modal.classList.contains('hidden')) {
+                nextImage();
+            } else if (e.key === 'ArrowLeft' && !modal.classList.contains('hidden')) {
+                prevImage();
+            }
+        });
+
+        // Cerrar modal clickeando fuera de la imagen
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+
+    <style>
+        .trip-card {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            transition: transform 0.3s ease;
+        }
+
+        #imageModal {
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        #imageModal.hidden {
+            animation: fadeOut 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        #modalImage {
+            transition: opacity 0.3s ease;
+            max-height: 80vh;
+        }
+
+        /* Responsive adjustments for gallery */
+        @media (max-width: 768px) {
+            .gallery-container .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            
+            #imageModal .relative {
+                margin: 1rem;
+            }
+        }
+
+        /* Loading state for images */
+        .gallery-item img {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .gallery-item img[src] {
+            animation: none;
+            background: none;
+        }
+    </style>
+</Layout>
