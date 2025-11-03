@@ -1,0 +1,31 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCE = [
+    {
+        dateTo: 'Currently',
+        dateFrom: 'December 2024',
+        role: 'Frontend Developer',
+        roleDescription: 'Frontend Developer proficient in Angular and React. Built responsive layouts and UI components focusing on accessibility and performance improvements. I led requirement gathering, designed application architectures, and defined database schemas to deliver end-to-end solutions.',
+        company: 'Alliance of Bioversity International and CIAT'
+    },
+    {
+        dateTo: 'November 2024',
+        dateFrom: 'December 2021',
+        role: 'ERP Analyst',
+        roleDescription: 'Provided Tier-1 and Tier-2 support in English and Spanish. I optimized existing business processes by identifying and documenting inefficiencies, and managed peripheral application support to ensure smooth end-to-end system functionality.',
+        company: 'Alliance of Bioversity International and CIAT'
+    }
+]
+---
+<div class="flex flex-col gap-10">
+    <h1 class="text-4xl lg:text-5xl font-bold">Experience</h1>
+    <ol class="relative border-s border-gray-200 dark:border-gray-700">
+        {EXPERIENCE.map((exp) => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...exp} />
+            </li>
+        ))}
+    </ol>
+</div>
+

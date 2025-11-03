@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Smooth scrolling for in-page anchors */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure sections are not hidden behind sticky navbar; adjust --nav-offset to match navbar height */
+:root {
+  --nav-offset: 5rem; /* adjust if navbar height changes */
+}
+
+section {
+  scroll-margin-top: var(--nav-offset);
+}

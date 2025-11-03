@@ -1,0 +1,30 @@
+---
+import SocialPill from "./SocialPill.astro"
+import TechStack from "./TechStack.astro"
+import GitHubIcon from "./icons/Github.astro"
+import LinkedInIcon from "./icons/LinkedIn.astro"
+---
+
+<div class="flex flex-col gap-10">
+    <h1 class="flex flex-col gap-4 md:flex-row items-center text-4xl lg:text-5xl font-bold">
+        Hey, I'm Jhon Henao 
+        <span class="text-sm font-medium border border-white px-4 py-1 rounded-full">
+            Not searching
+        </span>
+    </h1>
+    <h2 class="text-lg font-medium lg:text-xl">
+        <span class=" text-yellow-200/80">FrontEnd Developer.</span> 
+        <span class="text-white/80">Based in Cali, Colombia. I specialize in UI design, responsive web design and visual development.</span>
+    </h2>
+    <TechStack />
+    <nav class="flex gap-6">
+        <SocialPill href="https://github.com/JhonHenao1301">
+            <GitHubIcon class="size-6" />
+            GitHub
+        </SocialPill>
+        <SocialPill href="https://www.linkedin.com/in/jhon-edinson-henao-abb272196/">
+            <LinkedInIcon class="size-6" />
+            LinkedIn
+        </SocialPill>
+    </nav>
+</div>

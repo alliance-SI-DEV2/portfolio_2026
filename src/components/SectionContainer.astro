@@ -1,0 +1,7 @@
+---
+const { id } = Astro.props;
+---
+
+<section id={id ? id.replace(/^#/, '') : undefined} class="w-full lg:w-[740px] mx-auto px-8 sm:px-24 lg:px-0 py-44 scroll-mt-20">
+    <slot />
+</section>

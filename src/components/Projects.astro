@@ -1,0 +1,27 @@
+---
+import ProjectCard from "./ProjectCard.astro"
+const PROJECTS = [
+    {
+        title: "Education Support",
+        description: "Application that allows employees to request financial support for studying.",
+        image: "/images/projects/pm-image.png",
+        tags: ['Angular', 'Tailwind CSS']
+    },
+    {
+        title: "PM System",
+        description: "System made to evaluate the performance of every user.",
+        image: "/images/projects/pm-image.png",
+        tags: ['React', 'Next JS', 'Tailwind CSS']
+    }
+]
+---
+<div class="flex flex-col gap-8 items-center w-full">
+    <h1 class="text-4xl lg:text-5xl font-bold">Projects</h1>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-[1200px]">
+    { 
+        PROJECTS.map((project) => (
+            <ProjectCard {...project} />
+        ))
+    }
+    </div>
+</div>

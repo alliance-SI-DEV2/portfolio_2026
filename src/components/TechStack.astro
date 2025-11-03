@@ -1,0 +1,42 @@
+---
+const technologies = [
+  'JavaScript', 'TypeScript', 'React', 'Vue.js', 'Astro','HTML5', 'CSS3', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'Git', 'Vite', 'SCSS', 'Bootstrap', 'Next.js'
+]
+---
+
+<div class="w-full overflow-hidden bg-white/5 border border-white/10 rounded-lg py-3 mb-2">
+  <div class="flex animate-scroll gap-4">
+    <!-- Tech first copy -->
+    {technologies.map((tech) => (
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-linear-to-r from-yellow-400/20 to-orange-400/20 text-yellow-200 border border-yellow-400/30 whitespace-nowrap">
+        {tech}
+      </span>
+    ))}
+    <!-- Tech second copy for infinite effect -->
+    {technologies.map((tech) => (
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-linear-to-r from-yellow-400/20 to-orange-400/20 text-yellow-200 border border-yellow-400/30 whitespace-nowrap">
+        {tech}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+    width: max-content;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+</style>
