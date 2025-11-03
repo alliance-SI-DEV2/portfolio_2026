@@ -11,7 +11,9 @@ const trips = [
         country: "Perú",
         flag: "🇵🇪",
         images: [
-            "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&h=300&fit=crop"
+            "../../images/trips/Peru-1.jpg",
+            "../../images/trips/Peru-2.jpg",
+            "../../images/trips/Peru-3.jpg",
         ]
     },
     {
@@ -21,10 +23,10 @@ const trips = [
         country: "Brasil",
         flag: "🇧🇷",
         images: [
-            "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=400&h=300&fit=crop"
+            "../../images/trips/Brasil-1.jpg",
+            "../../images/trips/Brasil-2.jpg",
+            "../../images/trips/Brasil-3.jpg",
+            "../../images/trips/Brasil-4.jpg",
         ]
     },
     {
@@ -34,8 +36,8 @@ const trips = [
         country: "Curaçao",
         flag: "🇨🇼",
         images: [
-            "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+            "../../images/trips/Curacao-1.jpg",
+            "../../images/trips/Curacao-2.jpg",
         ]
     },
     {
@@ -45,10 +47,10 @@ const trips = [
         country: "México",
         flag: "🇲🇽",
         images: [
-            "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1571847852852-c5b05d23ffa8?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1586089761745-5a6a3b37b83b?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1565969830336-c242423e57c0?w=400&h=300&fit=crop"
+            "../../images/trips/Mexico-1.jpg",
+            "../../images/trips/Mexico-2.jpg",
+            "../../images/trips/Mexico-3.jpg",
+            "../../images/trips/Mexico-4.jpg"
         ]
     },
     {
@@ -58,6 +60,10 @@ const trips = [
         country: "Colombia",
         flag: "🇨🇴",
         images: [
+            "../../images/trips/Antioquia-1.jpg",
+            "../../images/trips/Antioquia-2.jpg",
+            "../../images/trips/Antioquia-3.jpg",
+            "../../images/trips/Antioquia-4.jpg",
         ]
     },
     {
@@ -67,9 +73,9 @@ const trips = [
         country: "Colombia",
         flag: "🇨🇴",
         images: [
-            "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop"
+            "../../images/trips/Santander-1.jpg",
+            "../../images/trips/Santander-2.jpg",
+            "../../images/trips/Santander-3.jpg"
         ]
     }
 ];
@@ -111,7 +117,7 @@ const trips = [
                 </div>
 
                 <!-- Trips Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="trips-grid">
+                <div class="grid md:grid-cols-2 gap-6" id="trips-grid">
                     {trips.map((trip) => (
                         <div 
                             class="trip-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
@@ -192,70 +198,19 @@ const trips = [
         </SectionContainer>
     </main>
 
-    <script>
-        // Datos de los viajes para el script (replicamos los datos)
-        const tripsData = [
-            {
-                id: 1,
-                name: "Perú",
-                images: [
-                    "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1580652688551-d5db14765b71?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1580748187633-64b74d697049?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1524013820042-74f98b83a9a6?w=800&h=600&fit=crop"
-                ]
-            },
-            {
-                id: 2,
-                name: "Brasil",
-                images: [
-                    "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=800&h=600&fit=crop"
-                ]
-            },
-            {
-                id: 3,
-                name: "Curaçao",
-                images: [
-                    "https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1585737166440-fe4cb2f8b76b?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&h=600&fit=crop"
-                ]
-            },
-            {
-                id: 4,
-                name: "México",
-                images: [
-                    "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1571847852852-c5b05d23ffa8?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1586089761745-5a6a3b37b83b?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1565969830336-c242423e57c0?w=800&h=600&fit=crop"
-                ]
-            },
-            {
-                id: 5,
-                name: "Antioquia",
-                images: [
-                    "https://images.unsplash.com/photo-1565689542502-46771c9e3b11?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1608834598654-7b20fd2cbeda?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=600&fit=crop"
-                ]
-            },
-            {
-                id: 6,
-                name: "Santander",
-                images: [
-                    "https://images.unsplash.com/photo-1544636331-8ad4e6d4e08c?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=800&h=600&fit=crop",
-                    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop"
-                ]
-            }
-        ];
+    <script define:vars={{ trips }}>
+        // Convertir los datos para URLs de imágenes en alta resolución para el modal
+        const tripsData = trips.map(trip => ({
+            ...trip,
+            images: trip.images.map(img => {
+                // Si es una URL de Unsplash, convertir a alta resolución
+                if (img.includes('unsplash.com')) {
+                    return img.replace('w=400&h=300', 'w=800&h=600');
+                }
+                // Si es una imagen local, mantenerla como está
+                return img;
+            })
+        }));
 
         // Variables para el modal
         let currentTripId = null;
@@ -267,7 +222,7 @@ const trips = [
         const prevBtn = document.getElementById('prevImage');
         const nextBtn = document.getElementById('nextImage');
 
-        // Funcionalidad de filtros
+        // Filter functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
         const tripCards = document.querySelectorAll('.trip-card');
 
@@ -275,7 +230,7 @@ const trips = [
             button.addEventListener('click', () => {
                 const filter = button.getAttribute('data-filter');
                 
-                // Actualizar estilos de botones
+                // Update active button styles
                 filterButtons.forEach(btn => {
                     btn.classList.remove('active', 'bg-yellow-200/20', 'border-yellow-200/50', 'text-yellow-200');
                     btn.classList.add('border-white/30', 'text-white/70');
@@ -284,21 +239,20 @@ const trips = [
                 button.classList.add('active', 'bg-yellow-200/20', 'border-yellow-200/50', 'text-yellow-200');
                 button.classList.remove('border-white/30', 'text-white/70');
                 
-                // Filtrar tarjetas
+                // Card filter
                 tripCards.forEach(card => {
                     const cardType = card.getAttribute('data-type');
-                    const htmlCard = card as HTMLElement;
                     
                     if (filter === 'all' || filter === cardType) {
-                        htmlCard.style.display = 'block';
-                        htmlCard.style.opacity = '1';
-                        htmlCard.style.transform = 'scale(1)';
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
                     } else {
-                        htmlCard.style.opacity = '0';
-                        htmlCard.style.transform = 'scale(0.8)';
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
                         setTimeout(() => {
-                            if (htmlCard.style.opacity === '0') {
-                                htmlCard.style.display = 'none';
+                            if (card.style.opacity === '0') {
+                                card.style.display = 'none';
                             }
                         }, 300);
                     }
@@ -306,7 +260,7 @@ const trips = [
             });
         });
 
-        // Funcionalidad de la galería
+        // Gallery functionality
         const galleryItems = document.querySelectorAll('.gallery-item');
         
         galleryItems.forEach(item => {
@@ -367,7 +321,7 @@ const trips = [
         nextBtn.addEventListener('click', nextImage);
         prevBtn.addEventListener('click', prevImage);
 
-        // Cerrar modal con ESC
+        // Close modal with ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
                 closeModal();
@@ -378,7 +332,7 @@ const trips = [
             }
         });
 
-        // Cerrar modal clickeando fuera de la imagen
+        // Close modal by clicking outside the image
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
