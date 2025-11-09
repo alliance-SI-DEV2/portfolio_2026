@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SectionContainer from '../components/SectionContainer.astro';
+import BackButton from '../components/BackButton.astro';
 
 // Trips data
 const trips = [
@@ -83,119 +84,122 @@ const trips = [
 
 <Layout title="My Trips - Jhon Henao">
     <main class='px-4'>
-        <SectionContainer>
-            <div class="flex flex-col gap-8">
-                <div class="text-center">
-                    <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">
-                        My Travel Adventures
-                    </h1>
-                    <p class="text-lg text-white/80">
-                        Exploring the world, one destination at a time
-                    </p>
-                </div>
+        <div class="flex flex-col gap-8 px-8 py-4">
+            <!-- Navigation back to home -->
+            <div class="flex justify-start">
+                <BackButton href="/" text="Back to Portfolio" icon="portfolio" />
+            </div>
+            
+            <div class="text-center">
+                <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">
+                    My Travel Adventures
+                </h1>
+                <p class="text-lg text-white/80">
+                    Exploring the world, one destination at a time
+                </p>
+            </div>
 
-                <!-- Filters -->
-                <div class="flex justify-center gap-4 mb-8">
-                    <button 
-                        class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 active bg-yellow-200/20 border-yellow-200/50 text-yellow-200"
-                        data-filter="all"
-                    >
-                        All Trips ({trips.length})
-                    </button>
-                    <button 
-                        class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 border-white/30 text-white/70 hover:border-yellow-200/50 hover:text-yellow-200"
-                        data-filter="international"
-                    >
-                        International ({trips.filter(trip => trip.type === 'international').length})
-                    </button>
-                    <button 
-                        class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 border-white/30 text-white/70 hover:border-yellow-200/50 hover:text-yellow-200"
-                        data-filter="national"
-                    >
-                        National ({trips.filter(trip => trip.type === 'national').length})
-                    </button>
-                </div>
+            <!-- Filters -->
+            <div class="flex justify-center gap-4 mb-8">
+                <button 
+                    class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 active bg-yellow-200/20 border-yellow-200/50 text-yellow-200"
+                    data-filter="all"
+                >
+                    All Trips ({trips.length})
+                </button>
+                <button 
+                    class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 border-white/30 text-white/70 hover:border-yellow-200/50 hover:text-yellow-200"
+                    data-filter="international"
+                >
+                    International ({trips.filter(trip => trip.type === 'international').length})
+                </button>
+                <button 
+                    class="filter-btn px-6 py-3 rounded-full border transition-all duration-300 border-white/30 text-white/70 hover:border-yellow-200/50 hover:text-yellow-200"
+                    data-filter="national"
+                >
+                    National ({trips.filter(trip => trip.type === 'national').length})
+                </button>
+            </div>
 
-                <!-- Trips Grid -->
-                <div class="grid md:grid-cols-2 gap-6" id="trips-grid">
-                    {trips.map((trip) => (
-                        <div 
-                            class="trip-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
-                            data-type={trip.type}
-                        >
-                            <div class="flex items-center gap-4 mb-4">
-                                <span class="text-3xl">{trip.flag}</span>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white">{trip.name}</h3>
-                                    <span class="text-sm text-yellow-200/80 capitalize">{trip.type} Trip</span>
-                                </div>
+            <!-- Trips Grid -->
+            <div class="grid md:grid-cols-2 gap-6" id="trips-grid">
+                {trips.map((trip) => (
+                    <div 
+                        class="trip-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+                        data-type={trip.type}
+                    >
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="text-3xl">{trip.flag}</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">{trip.name}</h3>
+                                <span class="text-sm text-yellow-200/80 capitalize">{trip.type} Trip</span>
                             </div>
+                        </div>
 
-                            <!-- Gallery -->
-                            <div class="gallery-container mb-4">
-                                <div class="grid grid-cols-2 gap-2">
-                                    {trip.images.map((image, index) => (
-                                        <div 
-                                            class="gallery-item relative overflow-hidden rounded-lg aspect-square cursor-pointer group"
-                                            data-trip-id={trip.id}
-                                            data-image-index={index}
-                                        >
-                                            <img 
-                                                src={image} 
-                                                alt={`${trip.name} - Image ${index + 1}`}
-                                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                                loading="lazy"
-                                            />
-                                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                                                <svg class="size-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                                                </svg>
-                                            </div>
+                        <!-- Gallery -->
+                        <div class="gallery-container mb-4">
+                            <div class="grid grid-cols-2 gap-2">
+                                {trip.images.map((image, index) => (
+                                    <div 
+                                        class="gallery-item relative overflow-hidden rounded-lg aspect-square cursor-pointer group"
+                                        data-trip-id={trip.id}
+                                        data-image-index={index}
+                                    >
+                                        <img 
+                                            src={image} 
+                                            alt={`${trip.name} - Image ${index + 1}`}
+                                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                            loading="lazy"
+                                        />
+                                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                                            <svg class="size-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                                            </svg>
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    ))}
-                </div>
-
-                <!-- Image expanded modal -->
-                <div id="imageModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-                    <div class="relative max-w-4xl max-h-[90vh] w-full">
-                        <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-yellow-200 transition-colors">
-                            <svg class="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                        <img id="modalImage" class="w-full h-full object-contain rounded-lg" src="" alt="" />
-                        <div class="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2">
-                            <p id="modalCaption" class="text-white font-semibold"></p>
-                        </div>
-
-                        <!-- Image navigation -->
-                        <button id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
-                            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
-                            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
                     </div>
-                </div>
-                <!-- Button to go back to home -->
-                <div class="text-center mt-8">
-                    <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-200/10 hover:bg-yellow-200/20 border border-yellow-200/30 rounded-full text-yellow-200 transition-colors">
-                        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                ))}
+            </div>
+
+            <!-- Image expanded modal -->
+            <div id="imageModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+                <div class="relative max-w-4xl max-h-[90vh] w-full">
+                    <button id="closeModal" class="absolute -top-12 right-0 text-white hover:text-yellow-200 transition-colors">
+                        <svg class="size-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
-                        Back to Portfolio
-                    </a>
+                    </button>
+                    <img id="modalImage" class="w-full h-full object-contain rounded-lg" src="" alt="" />
+                    <div class="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg px-4 py-2">
+                        <p id="modalCaption" class="text-white font-semibold"></p>
+                    </div>
+
+                    <!-- Image navigation -->
+                    <button id="prevImage" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
+                        <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="nextImage" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
+                        <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </SectionContainer>
+            <!-- Enhanced button to go back to home -->
+            <div class="text-center mt-12 pt-8 border-t border-white/10">
+                <a href="/" class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-yellow-200/10 to-yellow-200/20 hover:from-yellow-200/20 hover:to-yellow-200/30 border border-yellow-200/30 rounded-full text-yellow-200 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-200/20 group">
+                    <svg class="size-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m0 0h3m-3 0a1 1 0 001-1V10M10 20l4-4"></path>
+                    </svg>
+                    <span class="font-semibold">Back to Home</span>
+                </a>
+            </div>
+        </div>
     </main>
 
     <script define:vars={{ trips }}>
